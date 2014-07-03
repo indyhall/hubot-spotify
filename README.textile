@@ -1,50 +1,43 @@
 h1. Hubot-Spotify
 
-Want to control a central Spotify account in your office? This is the first version of a script that allows you to do so. Not really fancy at the moment, but it does the job. Thanks for the opensource AppleScripts and @dennus / @drblok.
+This is a fork of davevanleeuwen's "hubot-spotify":https://github.com/davidvanleeuwen/hubot-spotify for getting the current song played at Indy Hall through Slack. In the future perhaps there will be a command to add a song to a playlist and maybe other stuff.
 
 h2. Setup
 * OSX (mac mini / server)
 * Spotify
 * Hubot
-* Campfire
 
 h2. Install dependencies
 * @npm install sh@
 * @npm install spotify@
 
 h2. Current commands
-* play <1|2|3|query> - Play/pause, play a song that you searched (1,2,3) or play a track by title
-* pause - Pause the current song
-* toggle - Play/pause the current song
-* stop - Stop current song
-* next - Play the next song from the playlist
-* previous - Play the previous song from the playlist
-* current song - Shows what song I'm currently playing",
-* volume <0..9|up|down> - Change volume using a specific number between 0 (mute) and 9 or by up and down
-* mute - Mute/unmute the sound
-* search <track|album|artist> <query> - Search for a track on Spotify and play it
-
-h2. Screenshot
-!http://f.cl.ly/items/3Y3K210u0h2i1P1M3S3n/12i.png(screenshot)!
+* @current song@ - Shows what song I'm currently playing",
 
 h2. Run Hubot with Hubot-Spotify locally?
 
-#1 place this in your ~/.bash_profile
-export HUBOT_CAMPFIRE_ACCOUNT=subdomain
-export HUBOT_CAMPFIRE_TOKEN=token
-export HUBOT_CAMPFIRE_ROOMS=roomnumber, roomnumber
+#1 place this in your ~/.bash_profile (Slack adapter env vars)
+export HUBOT_SLACK_TOKEN=token
+export HUBOT_SLACK_TEAM=team
+export HUBOT_SLACK_BOTNAME=slackbot
 
 #2 install node, npm and clone hubot
 brew install node
 curl http://npmjs.org/install.sh | sh
 clone git://github.com/github/hubot.git
 
-#3 go to the hubot/scripts folder and get the hubot-spotify scripts in there
-https://github.com/davidvanleeuwen/hubot-spotify
+#3 install the Hubot-Slack adapter
+npm install hubot-slack --save
 
-#4 install the dependencies for hubot-spotify
+#4 go to the hubot/scripts folder and get the hubot-spotify scripts in there (git pull or just download)
+git://github.com/indyhall/hubot-spotify
+
+#5 install the dependencies for hubot-spotify
 npm install sh
 npm install spotify
 
-#5 run hubot with campfire
-bin/hubot -a campfire -n Hubot
+#6 run hubot with slack
+bin/hubot -a slack -n slackbot
+
+#7 figure out the best way to start Hubot on machine boot/Hubot failure
+TBD!
